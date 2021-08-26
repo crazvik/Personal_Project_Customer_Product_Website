@@ -1,0 +1,204 @@
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: steelblue;
+    margin-bottom: 0px;
+}
+
+h1 {
+    font-size: 100px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+h2 {
+    text-align: center;
+}
+
+nav {
+    z-index: 1;
+}
+
+.main-window {
+    background: white;
+    border-right: black 1px solid;
+    border-left: black 1px solid;
+    width: 75%;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+#linkList {
+    list-style-type: none;
+    margin: -8px;
+    padding: 0px;
+    overflow: hidden;
+    background-color: #152837;
+    box-shadow: 0px 3px 5px #152837;
+    position: relative;
+}
+
+#linkList>li {
+    float: left;
+}
+
+#linkList>li:hover {
+    background-color: #070e12;
+}
+
+#loginButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#loginButton:hover {
+    background-color: #070e12;
+}
+
+#logoutButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+}
+
+#logoutButton:hover {
+    background-color: #070e12;
+}
+
+li>a {
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+
+form {
+    text-align: center;
+}
+
+input {
+    padding: 12px 20px;
+    width: 25%;
+    display: block;
+    margin: 30px auto auto;
+    position: relative;
+    top: 50px;
+
+}
+
+button {
+    padding: 12px 20px;
+}
+
+#submit {
+    width: 25%;
+    position: relative;
+    margin: 75px 5% 5%;
+}
+
+.form-error {
+    text-align: left;
+    display: flex;
+    color: red;
+    font-size: small;
+    font-style: italic;
+}
+
+#adminLink {
+    color: black;
+}
+
+label {
+    position: relative;
+    bottom: -70px;
+}
+
+#register {
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+#register>a {
+    color: black;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 75%;
+    margin: auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.divBorder {
+    border-bottom: gray solid 1px;
+    width: 80%;
+    margin: 60px auto 10px;
+    position: relative;
+    bottom: 25px;
+}
+
+#review {
+    height: 100px;
+    overflow: hidden;
+    display: block;
+    margin: 35px auto -50px;
+    padding: 10px;
+}
+
+.container {
+    text-align: center;
+    font-size: 20px;
+}
+
+select {
+    padding: 12px;
+    width: 25%;
+    display: block;
+    position: relative;
+    margin: 80px auto 0px;
+}
+
+#reviewSubmit {
+    width: 25%;
+    position: relative;
+    margin: 75px auto 100px;
+}
+
+#foodSubmit {
+    width: 25%;
+    position: relative;
+    margin: 30px 5% 5%;
+}

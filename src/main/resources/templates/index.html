@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link th:href="@{/static/style.css}" href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <ul id="linkList">
+        <li><a href="index.html" th:href="@{/index}">Index</a></li>
+        <li><a href="restaurants.html" th:href="@{/restaurants}">Restaurants</a></li>
+        <li>
+            <a th:href="@{/users/register/form}" href="register.html">Register user</a></li>
+        <li>
+            <a th:href="@{/admin/registerRestaurant/form}" href="registerRestaurant.html">Register restaurants</a></li>
+        <li>
+            <a th:href="@{/admin/registerFoodItem/form}" href="registerFoodItem.html">Register food items</a></li>
+        <li>
+            <a th:href="@{/users/restaurantReview/form}" href="restaurantReview.html">Review restaurants</a></li>
+    </ul>
+
+    <form th:action="@{/logout}" action="#" class="form-inline" method="post">
+        <div>
+            <button class="btn btn-outline-info" type="submit" value="Logout" id="logoutButton">Logout</button>
+        </div>
+        <div>
+            <a class="btn btn-success" th:href="@{/login}" value="Login" id="loginButton">Login/Register</a>
+        </div>
+    </form>
+</nav>
+<section class="main-window"><h1>Main page</h1>
+    <div>
+        <div>
+            <h2>Welcome <span>Hroth masterrace</span></h2>
+        </div>
+        <div>
+            <h2>Welcome <span>Hroths>Any other race>Au ra</span></h2>
+        </div>
+    </div>
+</section>
+</body>
+</html>
