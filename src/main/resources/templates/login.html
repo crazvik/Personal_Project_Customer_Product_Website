@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link th:href="@{/static/style.css}" href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+<nav>
+    <ul id="linkList">
+        <li><a href="index.html" th:href="@{/index}">Index</a></li>
+        <li><a href="restaurants.html" th:href="@{/restaurants}">1</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/users/register/form}" href="register.html">2</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/admin/registerRestaurant/form}" href="registerRestaurant.html">3</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')">
+            <a th:href="@{/admin/registerFoodItem/form}" href="registerFoodItem.html">4</a></li>
+        <li sec:authorize="hasAuthority('USER')">
+            <a th:href="@{/users/restaurantReview/form}" href="restaurantReview.html">5</a></li>
+    </ul>
+
+    <form th:action="@{/logout}" action="#" class="form-inline" method="post">
+        <div sec:authorize="isAuthenticated()">
+            <button class="btn btn-outline-info" type="submit" value="Logout" id="logoutButton">Logout</button>
+        </div>
+        <div sec:authorize="isAnonymous()">
+            <a class="btn btn-success" th:href="@{/register/form}" id="loginButton">Register</a>
+        </div>
+    </form>
+</nav>
+<section class="main-window">
+    <h1>Login</h1>
+    <form th:action="@{/login/process}" th:object="${form}" method="post">
+        <label for="email"></label>
+        <input class="form-control" type="text" id="email" th:field="*{email}" placeholder="Email"/>
+        <div th:if="${#fields.hasErrors('email')}">
+            <ul class="p-0">
+                <li th:each="error : ${#fields.errors('email')}">
+                    <span class="form-error" th:text="${error}"></span>
+                </li>
+            </ul>
+        </div>
+        <label for="password"></label>
+        <input class="form-control" type="password" id="password" th:field="*{password}" placeholder="Password"/>
+        <div th:if="${#fields.hasErrors('password')}">
+            <ul class="p-0">
+                <li th:each="error : ${#fields.errors('password')}">
+                    <span class="form-error" th:text="${error}"></span>
+                </li>
+            </ul>
+        </div>
+        <button id="submit" class="btn btn-primary" type="submit">Login</button>
+    </form>
+</section>
+</body>
+</html>

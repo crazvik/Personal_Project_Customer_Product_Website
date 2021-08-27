@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 @Document("Users")
@@ -18,18 +19,22 @@ public class User {
     private int age;
     private String email;
     private String password;
+    private boolean isAdmin;
     private ArrayList<ActivationKey> keys;
+    private String[] roles;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, int age, String email, String password, ArrayList<ActivationKey> keys) {
+    public User(String firstName, String lastName, int age, String email, String password, boolean isAdmin, ArrayList<ActivationKey> keys, String[] roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
         this.keys = keys;
+        this.roles = roles;
     }
 
     public String getId() {
@@ -80,12 +85,28 @@ public class User {
         this.password = password;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     public ArrayList<ActivationKey> getKeys() {
         return keys;
     }
 
     public void setKeys(ArrayList<ActivationKey> keys) {
         this.keys = keys;
+    }
+
+    public String[] getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String[] roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -97,7 +118,9 @@ public class User {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
                 ", keys=" + keys +
+                ", roles=" + Arrays.toString(roles) +
                 '}';
     }
 
@@ -106,11 +129,16 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return age == user.age && Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(keys, user.keys);
+        return age == user.age && isAdmin == user.isAdmin && Objects.equals(id, user.id) &&
+                Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) && Objects.equals(password, user.password) &&
+                Objects.equals(keys, user.keys) && Arrays.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, age, email, password, keys);
+        int result = Objects.hash(id, firstName, lastName, age, email, password, isAdmin, keys);
+        result = 31 * result + Arrays.hashCode(roles);
+        return result;
     }
 }

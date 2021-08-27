@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.Objects;
+import java.util.Optional;
 
 @Document("Activation Keys")
 public class ActivationKey {
@@ -14,12 +15,14 @@ public class ActivationKey {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String key;
+    private User owner;
 
     public ActivationKey() {
     }
 
-    public ActivationKey(String key) {
+    public ActivationKey(String key, User owner) {
         this.key = key;
+        this.owner = owner;
     }
 
     public String getId() {
@@ -38,11 +41,20 @@ public class ActivationKey {
         this.key = key;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     @Override
     public String toString() {
         return "ActivationKey{" +
                 "id='" + id + '\'' +
                 ", key='" + key + '\'' +
+                ", owner=" + owner +
                 '}';
     }
 
@@ -51,11 +63,11 @@ public class ActivationKey {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ActivationKey that = (ActivationKey) o;
-        return Objects.equals(id, that.id) && Objects.equals(key, that.key);
+        return Objects.equals(id, that.id) && Objects.equals(key, that.key) && Objects.equals(owner, that.owner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, key);
+        return Objects.hash(id, key, owner);
     }
 }

@@ -6,5 +6,6 @@ import com.hobby.webApp.entities.User;
 import java.util.ArrayList;
 
 public interface UserService {
-    User register(String firstName, String lastName, int age, String email, String password, ArrayList<ActivationKey> keys);
+    User register(String firstName, String lastName, int age, String email,
+                  String password, boolean isAdmin, ArrayList<ActivationKey> keys, String[] roles);
 }

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+    <link rel="stylesheet" th:href="@{/styles/style.css}" href="styles/style.css">
     <meta charset="UTF-8">
-    <title>Main Page</title>
-    <link th:href="@{/static/style.css}" href="/static/style.css" rel="stylesheet">
+    <title>User</title>
 </head>
 <body>
 <nav>
@@ -25,18 +26,30 @@
             <button class="btn btn-outline-info" type="submit" value="Logout" id="logoutButton">Logout</button>
         </div>
         <div sec:authorize="isAnonymous()">
-            <a class="btn btn-success" th:href="@{/register/form}" id="loginButton">Login/Register</a>
+            <a class="btn btn-success" th:href="@{/login}" value="Login" id="loginButton">Login/Register</a>
         </div>
     </form>
 </nav>
-<section class="main-window"><h1>Main page</h1>
-    <div>
-        <div>
-            <h2>Welcome <span>Hroth masterrace</span></h2>
+<section class="main-window">
+    <h1>User</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <span>Name:</span>
+                <span th:text="${user.firstName+' '+user.lastName}"></span>
+            </div>
         </div>
-        <div>
-            <h2>Welcome <span>Hroths>Any other race>Au ra</span></h2>
+        <div class="row">
+            <div class="col-1">
+                <span>Username:</span>
+                <span th:text="${user.email}"></span>
+            </div>
+            <div class="col-1">
+                <span>Registered:</span>
+                <span th:text="${user.age}"></span>
+            </div>
         </div>
+        <a class="btn btn-link" th:href="@{/users/{fullName}/update (id=${user.firstName})}">Update</a>
     </div>
 </section>
 </body>
