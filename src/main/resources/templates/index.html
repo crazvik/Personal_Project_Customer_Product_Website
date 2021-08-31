@@ -25,7 +25,7 @@
             <button class="btn btn-outline-info" type="submit" value="Logout" id="logoutButton">Logout</button>
         </div>
         <div sec:authorize="isAnonymous()">
-            <a class="btn btn-success" th:href="@{/register/form}" id="loginButton">Login/Register</a>
+            <a class="btn btn-success" th:href="@{/login/form}" id="loginButton">Login</a>
         </div>
     </form>
 </nav>

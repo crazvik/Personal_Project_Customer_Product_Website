@@ -1,5 +1,6 @@
 package com.hobby.webApp.controllers;
 
+import com.hobby.webApp.entities.Role;
 import com.hobby.webApp.dto.CreateRegisterForm;
 import com.hobby.webApp.entities.ActivationKey;
 import com.hobby.webApp.entities.User;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Optional;
 
 @Controller
 public class RegisterControl {
@@ -37,7 +37,7 @@ public class RegisterControl {
         this.activationKeyRepo = activationKeyRepo;
     }
 
-    @GetMapping("register/form")
+    @GetMapping("guest/register/form")
     public String getRegisterForm(Model model) {
         model.addAttribute("form", new CreateRegisterForm());
         return "register";
@@ -65,12 +65,17 @@ public class RegisterControl {
 
         ArrayList<ActivationKey> activationKeys = new ArrayList<>(
                 Collections.singletonList(activationKeyService.register()));
-        String[] roles = new String[]{"", "USER"};
+        String[] roles = new String[2];
+        roles[0] = Role.USER.toString();
+        roles[1] = "N/A";
 
         User newUser = userService.register(form.getFirstName(), form.getLastName(),
-                Integer.parseInt(form.getAge()), form.getEmail(), form.getPassword(), form.isAdmin(), activationKeys, roles);
+                Integer.parseInt(form.getAge()), form.getEmail(), form.getPassword(),
+                form.isAdmin(), roles, activationKeys, new ArrayList<>());
 
-        activationKeyService.update(userRepo.findByEmail(newUser.getEmail()).get());
+        if (userRepo.findByEmail(newUser.getEmail()).isPresent()) {
+            activationKeyService.update(userRepo.findByEmail(newUser.getEmail()).get());
+        }
 
         if(form.isAdmin()) {
             return "redirect:/user/"+newUser.getFirstName();

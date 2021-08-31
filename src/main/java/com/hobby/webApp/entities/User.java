@@ -20,21 +20,24 @@ public class User {
     private String email;
     private String password;
     private boolean isAdmin;
-    private ArrayList<ActivationKey> keys;
     private String[] roles;
+    private ArrayList<ActivationKey> keys;
+    private ArrayList<Product> products;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, int age, String email, String password, boolean isAdmin, ArrayList<ActivationKey> keys, String[] roles) {
+    public User(String firstName, String lastName, int age, String email, String password,
+                boolean isAdmin, String[] roles, ArrayList<ActivationKey> keys, ArrayList<Product> products) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
-        this.keys = keys;
         this.roles = roles;
+        this.keys = keys;
+        this.products = products;
     }
 
     public String getId() {
@@ -107,6 +110,14 @@ public class User {
 
     public void setRoles(String[] roles) {
         this.roles = roles;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
     }
 
     @Override

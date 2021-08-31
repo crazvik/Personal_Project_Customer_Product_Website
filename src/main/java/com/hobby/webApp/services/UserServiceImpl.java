@@ -1,6 +1,7 @@
 package com.hobby.webApp.services;
 
 import com.hobby.webApp.entities.ActivationKey;
+import com.hobby.webApp.entities.Product;
 import com.hobby.webApp.entities.User;
 import com.hobby.webApp.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String firstName, String lastName, int age, String email, String password, boolean isAdmin, ArrayList<ActivationKey> keys, String[] roles) {
-        User newUser = new User(firstName, lastName, age, email, bCryptPasswordEncoder.encode(password), isAdmin, keys, roles);
+    public User register(String firstName, String lastName, int age, String email, String password,
+                         boolean isAdmin, String[] roles, ArrayList<ActivationKey> keys, ArrayList<Product> products) {
+        User newUser = new User(firstName, lastName, age, email, bCryptPasswordEncoder.encode(password), isAdmin, roles, keys, products);
         return userRepo.save(newUser);
     }
 }

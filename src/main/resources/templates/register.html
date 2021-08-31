@@ -86,10 +86,11 @@
                 </li>
             </ul>
         </div>
-
         <div sec:authorize="hasAuthority('ADMIN')">
             <label>Create admin</label>
-            <input type="checkbox" value="true" th:field="*{admin}">
+            <label>
+                <input type="checkbox" value="true" th:field="*{admin}">
+            </label>
         </div>
         <button id="submit" class="btn btn-primary" type="submit">Register</button>
     </form>
