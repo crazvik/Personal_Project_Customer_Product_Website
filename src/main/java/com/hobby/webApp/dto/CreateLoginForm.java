@@ -1,12 +1,13 @@
 package com.hobby.webApp.dto;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 public class CreateLoginForm {
-    @NotBlank(message = "Can't be empty.")
+    @NotEmpty(message = "Can't be empty.")
     private String email;
 
-    @NotBlank(message = "Can't be empty.")
+    @NotEmpty(message = "Can't be empty.")
     private String password;
 
     public String getEmail() {

@@ -1,34 +1,12 @@
 package com.hobby.webApp.dto;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 public class CreateRegisterForm {
-    @NotBlank(message = "First name is mandatory")
-    @Size(min = 2, max = 255, message = "First name need to have 2 or more letters")
     private String firstName;
-
-    @NotBlank(message = "Last name is mandatory")
-    @Size(min = 2, max = 255, message = "Last name need to have 2 or more letters")
     private String lastName;
-
-    @NotBlank(message = "Age is mandatory")
-    @Size(min = 18, message = "You must be at least 18 to register")
-    @Pattern(regexp = "^(?=.*[0-9]+.*)$", message = "Can only contain numbers")
     private String age;
-
-    @NotBlank(message = "Email is mandatory")
     private String email;
-
-    @NotBlank(message = "You need to define a password")
-    @Pattern(regexp = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$", message = "Must contain at least one letter, one number, and be longer than six characters.")
     private String password;
-
-    @NotBlank(message = "You need to confirm your password")
-    @Pattern(regexp = "^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$", message = "Must contain at least one letter, one number, and be longer than six characters.")
     private String passwordConfirm;
-
     private boolean admin;
 
     public String getFirstName() {

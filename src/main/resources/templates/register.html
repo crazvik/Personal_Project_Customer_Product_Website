@@ -32,66 +32,56 @@
 <section class="main-window">
     <h1>Register</h1>
     <form th:action="@{/register/process}" th:object="${form}" method="post">
-        <label for="firstName"></label>
-        <input class="form-control" type="text" id="firstName" th:field="*{firstName}" placeholder="First name"/>
-        <div th:if="${#fields.hasErrors('firstName')}">
-            <ul class="p-0">
-                <li th:each="error : ${#fields.errors('firstName')}">
-                    <span class="form-error" th:text="${error}"></span>
-                </li>
-            </ul>
-        </div>
-        <label for="lastName"></label>
-        <input class="form-control" type="text" id="lastName" th:field="*{lastName}" placeholder="Last name"/>
-        <div th:if="${#fields.hasErrors('lastName')}">
-            <ul class="p-0">
-                <li th:each="error : ${#fields.errors('lastName')}">
-                    <span class="form-error" th:text="${error}"></span>
-                </li>
-            </ul>
-        </div>
-        <label for="age"></label>
-        <input class="form-control" type="text" id="age" th:field="*{age}" placeholder="Age"/>
-        <div th:if="${#fields.hasErrors('age')}">
-            <ul class="p-0">
-                <li th:each="error : ${#fields.errors('age')}">
-                    <span class="form-error" th:text="${error}"></span>
-                </li>
-            </ul>
-        </div>
-        <label for="email"></label>
-        <input class="form-control" type="text" id="email" th:field="*{email}" placeholder="Email"/>
-        <div th:if="${#fields.hasErrors('email')}">
-            <ul class="p-0">
-                <li th:each="error : ${#fields.errors('email')}">
-                    <span class="form-error" th:text="${error}"></span>
-                </li>
-            </ul>
-        </div>
-        <label for="password"></label>
-        <input class="form-control" type="password" id="password" th:field="*{password}" placeholder="Password"/>
-        <div th:if="${#fields.hasErrors('password')}">
-            <ul class="p-0">
-                <li th:each="error : ${#fields.errors('password')}">
-                    <span class="form-error" th:text="${error}"></span>
-                </li>
-            </ul>
-        </div>
-        <label for="confirm"></label>
-        <input class="form-control" type="password" id="confirm" th:field="*{passwordConfirm}" placeholder="Confirm password">
-        <div th:if="${#fields.hasErrors('passwordConfirm')}">
-            <ul class="p-0">
-                <li th:each="error : ${#fields.errors('passwordConfirm')}">
-                    <span class="form-error" th:text="${error}"></span>
-                </li>
-            </ul>
-        </div>
-        <div sec:authorize="hasAuthority('ADMIN')">
-            <label>Create admin</label>
-            <label>
-                <input type="checkbox" value="true" th:field="*{admin}">
-            </label>
-        </div>
+        <table>
+            <tr>
+                <td>First name:</td>
+                <td><label>
+                    <input type="text" th:field="*{firstName}"/>
+                </label></td>
+                <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td><label>
+                    <input type="text" th:field="*{lastName}"/>
+                </label></td>
+                <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td><label>
+                    <input type="number" th:field="*{age}"/>
+                </label></td>
+                <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><label>
+                    <input type="text" th:field="*{email}"/>
+                </label></td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><label>
+                    <input type="password" th:field="*{password}"/>
+                </label></td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+            </tr>
+            <tr>
+                <td>Confirm Password:</td>
+                <td><label>
+                    <input type="password" th:field="*{passwordConfirm}"/>
+                </label></td>
+                <td th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Password Confirm Error</td>
+            </tr>
+            <tr th:if="authenticated" sec:authorize="isAuthenticated()">
+                <td>Make admin:</td>
+                <td><label>
+                    <input id="adminCheckbox" type="checkbox" th:field="*{admin}"/>
+                </label></td>
+            </tr>
+        </table>
         <button id="submit" class="btn btn-primary" type="submit">Register</button>
     </form>
 </section>

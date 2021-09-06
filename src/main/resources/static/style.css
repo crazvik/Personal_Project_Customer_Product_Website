@@ -12,7 +12,7 @@ body {
 h1 {
     font-size: 100px;
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 50px;
 }
 
 h2 {
@@ -99,11 +99,7 @@ form {
 
 input {
     padding: 12px 20px;
-    width: 25%;
     display: block;
-    margin: 30px auto auto;
-    position: relative;
-    top: 50px;
 
 }
 
@@ -129,16 +125,18 @@ button {
     color: black;
 }
 
-label {
-    position: relative;
-    bottom: -70px;
-}
-
 #register {
     text-align: center;
     position: relative;
     font-size: 20px;
     margin-bottom: 50px;
+}
+
+#adminCheckbox {
+    margin-left: 0px;
+    width: 40px;
+    height: 40px;
+    border: solid 1px black;
 }
 
 #register>a {
